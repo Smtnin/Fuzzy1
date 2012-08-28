@@ -53,7 +53,7 @@ namespace WindowsFormsApplication1
             int wX;
             int hX;
             double xF, yF;
-            double step;
+            double[] dot;
 
             wX = pictureBox1.Width;
             hX = pictureBox1.Height; //Значение высоты
@@ -65,9 +65,9 @@ namespace WindowsFormsApplication1
             myPen = new System.Drawing.Pen(System.Drawing.Color.Blue);
             flagGraphics.DrawLine(myPen, 25, hX-15, wX, hX-15);
             flagGraphics.DrawLine(myPen, 30, 0, 30, hX-12);
-            Font dew = new Font("Verdana", 8, FontStyle.Bold);
+            Font dew = new Font("Veranda", 8, FontStyle.Bold);
             System.Drawing.Brush Brush = new SolidBrush(Color.Gray);
-            flagGraphics.DrawString("    4,0    4,2    4,4    4,6    4,8    5,0         x", dew, Brush, 3, hX-12);
+            flagGraphics.DrawString("     4,0    4,2    4,4    4,6    4,8    5,0         x", dew, Brush, 3, hX-12);
 
             flagGraphics.DrawString("0", dew, Brush, 6, hX - 22);
             flagGraphics.DrawString("0,2", dew, Brush, 0, hX - 45);
@@ -79,9 +79,35 @@ namespace WindowsFormsApplication1
             
             // График
             myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
+            xF = 0;
+            yF = (xF - numericUpDown1.Value) / (numericUpDown2.Value - numericUpDown1.Value);
             flagGraphics.DrawLine(myPen, 25, hX - 15, wX, hX - 15);
             flagGraphics.DrawLine(myPen, 30, 0, 30, hX - 12);
-
+            /*
+             *         
+             * numericUpDown1.Value = 4.3m;
+             * numericUpDown2.Value = 4.8m;
+             * numericUpDown3.Value = 4.2m;
+             * numericUpDown4.Value = 4.6m;
+             * 
+             * 
+             * y=0 для 2<=x<=4,3
+             * y=(x-4,3)/0,5 для 4,3<=x<=4,8
+             * y=1 для 4,8<=x<=5
+             * 
+             * y=0 для 2<=x<=4,2
+             * y=(x-4,2)/0,4 для 4,2<=x<=4,6
+             * y=1 для 4,6<=x<=5
+             *
+             * -------------------------------
+             * y=0 для 2<=x<=numericUpDown1.Value
+             * y=(x-numericUpDown1.Value)/(numericUpDown2.Value-numericUpDown1.Value) для numericUpDown1.Value<=x<=numericUpDown2.Value
+             * y=1 для numericUpDown2.Value<=x<=5
+             * 
+             * y=0 для 2<=x<=numericUpDown3.Value
+             * y=(x-numericUpDown3.Value)/(numericUpDown4.Value-numericUpDown3.Value) для numericUpDown3.Value<=x<=numericUpDown4.Value
+             * y=1 для numericUpDown4.Value<=x<=5
+             */
 
             pictureBox1.Image = flag;
 
