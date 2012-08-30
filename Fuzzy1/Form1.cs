@@ -45,14 +45,17 @@ namespace WindowsFormsApplication1
 
 
             }
+            s=this.dataGridView2.Rows[0].Cells[0].Value.ToString();
+            textBox1.Text = System.Convert.ToString(n);
             double a1 = Convert.ToDouble(numericUpDown1.Value);
+            
         }
 
         private void InitGRAPH()
         {
             int wX;
             int hX;
-            double xF, yF;
+            double x1F, x2F, yF,n1,n2,n3,n4;
             double[] dot;
 
             wX = pictureBox1.Width;
@@ -63,13 +66,22 @@ namespace WindowsFormsApplication1
             Graphics flagGraphics = Graphics.FromImage(flag);
             System.Drawing.Pen myPen;
             myPen = new System.Drawing.Pen(System.Drawing.Color.Blue);
-            flagGraphics.DrawLine(myPen, 25, hX-15, wX, hX-15);
-            flagGraphics.DrawLine(myPen, 30, 0, 30, hX-12);
+            flagGraphics.DrawLine(myPen, 25, hX-15, wX, hX-15); // горизонталь
+            flagGraphics.DrawLine(myPen, 30, 0, 30, hX-12);//вертикаль
             Font dew = new Font("Veranda", 8, FontStyle.Bold);
             System.Drawing.Brush Brush = new SolidBrush(Color.Gray);
-            flagGraphics.DrawString("     4,0    4,2    4,4    4,6    4,8    5,0         x", dew, Brush, 3, hX-12);
-
-            flagGraphics.DrawString("0", dew, Brush, 6, hX - 22);
+            //flagGraphics.DrawString("     4,0    4,2    4,4    4,6    4,8    5,0         x", dew, Brush, 3, hX-12);
+            // ноль у меня 30,hX-15
+            // отметки по x       
+            flagGraphics.DrawString("4,0", dew, Brush, 30, hX - 12);
+            flagGraphics.DrawString("4,2", dew, Brush, 60, hX - 12);
+            flagGraphics.DrawString("4,4", dew, Brush, 90, hX - 12);
+            flagGraphics.DrawString("4,6 ", dew, Brush, 120, hX - 12);
+            flagGraphics.DrawString("4,8", dew, Brush, 150, hX - 12);
+            flagGraphics.DrawString("5,0", dew, Brush, 180, hX - 12);
+            flagGraphics.DrawString("x", dew, Brush, 210, hX - 12);
+            // отметки по y
+            flagGraphics.DrawString("0", dew, Brush, 6, hX - 15);
             flagGraphics.DrawString("0,2", dew, Brush, 0, hX - 45);
             flagGraphics.DrawString("0,4", dew, Brush, 0, hX - 75);
             flagGraphics.DrawString("0,6", dew, Brush, 0, hX - 105);
@@ -78,11 +90,16 @@ namespace WindowsFormsApplication1
             flagGraphics.DrawString("u", dew, Brush, 6, hX - 195);
             
             // График
+           
+            n1 = 30 / 4 * System.Convert.ToDouble(numericUpDown1.Value);
+            n2 = 30 / 4 * System.Convert.ToDouble(numericUpDown2.Value);
+            n3 = 30 / 4 * System.Convert.ToDouble(numericUpDown3.Value);
+            n4 = 30 / 4 * System.Convert.ToDouble(numericUpDown4.Value);
             myPen = new System.Drawing.Pen(System.Drawing.Color.Red);
-            xF = 0;
-            yF = (xF - numericUpDown1.Value) / (numericUpDown2.Value - numericUpDown1.Value);
-            flagGraphics.DrawLine(myPen, 25, hX - 15, wX, hX - 15);
-            flagGraphics.DrawLine(myPen, 30, 0, 30, hX - 12);
+            flagGraphics.DrawLine(myPen, 75, hX - 15, 150, hX - 165); //
+            myPen = new System.Drawing.Pen(System.Drawing.Color.Black);
+            flagGraphics.DrawLine(myPen, 60, hX - 15, 120, hX - 165);
+            flagGraphics.DrawLine(myPen, 120, hX - 165, 180, hX - 165);
             /*
              *         
              * numericUpDown1.Value = 4.3m;
@@ -148,6 +165,11 @@ namespace WindowsFormsApplication1
             {
                 dataGridView2.Rows.Add(rowArray);
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
        
